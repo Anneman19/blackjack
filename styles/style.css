@@ -1,0 +1,50 @@
+html,
+body {
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 4fr 1fr;
+    height: 100%;
+}
+
+.header {
+    grid-row: 1 / 2;
+}
+
+.game-area {
+    grid-row: 2 / 3;
+    background-color: aliceblue;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 4fr;
+}
+
+.game-info {
+    grid-row: 1 / 2;
+}
+
+.game-buttons {
+    grid-row: 2 / 3;
+}
+
+.game-cards {
+    grid-row: 3 / 4;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.footer {
+    grid-row: 3 / 4;
+}
+
+.header,
+.footer {
+    background-color: aquamarine;
+}
