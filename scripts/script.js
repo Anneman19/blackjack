@@ -82,6 +82,7 @@ const gameFunctions = {
         const selectedCard = randomCard;
 
         cards.push(cardInfo[selectedSuit][selectedCard].value);
+        gameVisuals.showCard(selectedSuit, selectedCard);
     },
     randomSuit: () => {
         const randomValue = getRandomNumber(1, 4);
@@ -102,7 +103,7 @@ const gameFunctions = {
     },
     getRandomNumber: (min, max) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    },
 }
 
 const cardTotals = {
@@ -113,4 +114,14 @@ const cardTotals = {
 const haveCards = {
     playerCards: [],
     dealerCards: [],
+}
+
+const gameVisuals = {
+    dealerArea: document.querySelector(".dealer-cards"),
+    playerArea: document.querySelector(".player-cards"),
+    showCard: (selectedSuit, selectedCard) => {
+        const cardImage = cardInfo[selectedSuit][selectedCard].path;
+        const card = document.createElement("img");
+        card.classList.add("card");
+    },
 }
