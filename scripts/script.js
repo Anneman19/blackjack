@@ -12,7 +12,7 @@ const cardInfo = {
       11: { path: "../resources/SVG-cards-1.3/jack_of_clubs.svg", value: 10 },
       12: { path: "../resources/SVG-cards-1.3/queen_of_clubs.svg", value: 10 },
       13: { path: "../resources/SVG-cards-1.3/king_of_clubs.svg", value: 10 },
-      1: { path: "../resources/SVG-cards-1.3/ace_of_clubs.svg", value: gameFunctions.aceValue },
+      1: { path: "../resources/SVG-cards-1.3/ace_of_clubs.svg", value: gameFunctions[aceValue] },
       },
     diamonds: {
       2: { path: "../resources/SVG-cards-1.3/2_of_diamonds.svg", value: 2 },
@@ -27,7 +27,7 @@ const cardInfo = {
       11: { path: "../resources/SVG-cards-1.3/jack_of_diamonds.svg", value: 10 },
       12: { path: "../resources/SVG-cards-1.3/queen_of_diamonds.svg", value: 10 },
       13: { path: "../resources/SVG-cards-1.3/king_of_diamonds.svg", value: 10 },
-      1: { path: "../resources/SVG-cards-1.3/ace_of_diamonds.svg", value: gameFunctions.aceValue },
+      1: { path: "../resources/SVG-cards-1.3/ace_of_diamonds.svg", value: gameFunctions[aceValue] },
       },
     hearts: {
       2: { path: "../resources/SVG-cards-1.3/2_of_hearts.svg", value: 2 },
@@ -42,7 +42,7 @@ const cardInfo = {
       11: { path: "../resources/SVG-cards-1.3/jack_of_hearts.svg", value: 10 },
       12: { path: "../resources/SVG-cards-1.3/queen_of_hearts.svg", value: 10 },
       13: { path: "../resources/SVG-cards-1.3/king_of_hearts.svg", value: 10 },
-      1: { path: "../resources/SVG-cards-1.3/ace_of_hearts.svg", value: gameFunctions.aceValue },
+      1: { path: "../resources/SVG-cards-1.3/ace_of_hearts.svg", value: gameFunctions[aceValue] },
       },
     spades: {
       2: { path: "../resources/SVG-cards-1.3/2_of_spades.svg", value: 2 },
@@ -57,16 +57,16 @@ const cardInfo = {
       11: { path: "../resources/SVG-cards-1.3/jack_of_spades.svg", value: 10 },
       12: { path: "../resources/SVG-cards-1.3/queen_of_spades.svg", value: 10 },
       13: { path: "../resources/SVG-cards-1.3/king_of_spades.svg", value: 10 },
-      1: { path: "../resources/SVG-cards-1.3/ace_of_spades.svg", value: gameFunctions.aceValue },
+      1: { path: "../resources/SVG-cards-1.3/ace_of_spades.svg", value: gameFunctions[aceValue] },
     },
 }
 
 const gameFunctions = {
     aceValue: () => {
-        userChoiceValue = parseInt(prompt("You drew and ace! Choose a value for this card (1 or 11): "));
+        userChoiceValue = parseInt(prompt("You drew an ace! Choose a value for this card (1 or 11): "));
         while (userChoiceValue !== 1 || userChoiceValue !== 11) {
             alert("Not a valid choice!");
-            userChoiceValue = parseInt(prompt("You drew and ace! Choose a value for this card (1 or 11): "));
+            userChoiceValue = parseInt(prompt("You drew an ace! Choose a value for this card (1 or 11): "));
         }
         return userChoiceValue;
     },
@@ -115,13 +115,20 @@ const haveCards = {
     playerCards: [],
     dealerCards: [],
 }
-
+// add turn function
 const gameVisuals = {
-    dealerArea: document.querySelector(".dealer-cards"),
-    playerArea: document.querySelector(".player-cards"),
     showCard: (selectedSuit, selectedCard) => {
+        const dealerArea = document.querySelector(".dealer-cards");
+        const playerArea = document.querySelector(".player-cards");
+
         const cardImage = cardInfo[selectedSuit][selectedCard].path;
         const card = document.createElement("img");
         card.classList.add("card");
+        card.src(cardImage);
+
+        dealerArea.appendChild(card);
     },
 }
+
+console.log(gameVisuals[showCard("clubs", 5)]);
+console.log("awe");
